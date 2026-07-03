@@ -2,17 +2,23 @@
 
 ## Table des matières
 
-- [Contexte du projet](#contexte-du-projet)
-- [Modalités pédagogiques](#modalités-pédagogiques)
-- [Déroulé du projet](#déroulé-du-projet)
-- [Modalités d'évaluation](#modalités-dévaluation)
-- [Livrables](#livrables)
-- [Critères de performance](#critères-de-performance)
-- [Wiki](#wiki)
-- [Fonctionnalités attendues](#fonctionnalités-attendues)
+- [Documentation du projet](#documentation-du-projet)
 - [Structure du projet](#structure-du-projet)
 
----
+## Documentation du projet
+
+L’ensemble du brief est découpé en fichiers Markdown dédiés dans `assets/doc-jeu-aquarium/`.
+
+- [Documentation du dossier](assets/doc-jeu-aquarium/documentation.md)
+- [Contexte du projet](assets/doc-jeu-aquarium/contexte-du-projet.md)
+- [Modalités pédagogiques](assets/doc-jeu-aquarium/modalites-pedagogiques.md)
+- [Déroulé du projet](assets/doc-jeu-aquarium/deroule-du-projet.md)
+- [Modalités d'évaluation](assets/doc-jeu-aquarium/modalites-devaluation.md)
+- [Livrables](assets/doc-jeu-aquarium/livrables.md)
+- [Critères de performance](assets/doc-jeu-aquarium/criteres-de-performance.md)
+- [Wiki](assets/doc-jeu-aquarium/wiki.md)
+- [Fonctionnalités attendues](assets/doc-jeu-aquarium/fonctionnalites-attendues.md)
+
 ## Structure du projet
 
 ```text
@@ -20,95 +26,33 @@ Scalair/
 ├── index.html
 ├── README.md
 └── assets/
+	├── doc-jeu-aquarium/
+	│   ├── documentation.md
+	│   ├── contexte-du-projet.md
+	│   ├── modalites-pedagogiques.md
+	│   ├── deroule-du-projet.md
+	│   ├── modalites-devaluation.md
+	│   ├── livrables.md
+	│   ├── criteres-de-performance.md
+	│   ├── wiki.md
+	│   ├── fonctionnalites-attendues.md
+	│   └── structure-du-projet.md
+	├── maquette/
 	├── img/
 	│   └── aquarium.jpg
 	└── svg/
 		└── scalair.svg
-├── script.js
-
 ```
 
 - `index.html` : page principale du mini-jeu
+- `assets/doc-jeu-aquarium/` : documentation détaillée du projet
+- `assets/maquette/` : éléments de maquette du projet
 - `assets/img/` : images utilisées par le projet
 - `assets/svg/` : icônes et éléments vectoriels
-- `script.js` : fichier contenant la logique JavaScript du jeu
----
-## Contexte du projet
 
-Vous avez été invité à participer à un atelier de découverte sur les bases du développement. C’est l’occasion de revoir vos bases et de faire parler votre créativité en créant en équipe un mini-jeu simple basé sur un état central, des interactions utilisateurs et des animations.
+<div align="center">
 
-C’est aussi l’occasion de rencontrer d’autres personnes aussi passionnées que vous.
+[![Commencer](https://img.shields.io/badge/Commencer-0F766E?style=for-the-badge&logo=readthedocs&logoColor=white)](assets/doc-jeu-aquarium/documentation.md)
 
-## Modalités pédagogiques
-
-- Activité à réaliser par groupe de 2 ou 3
-- Choix du groupe : libre
-- Technologies : HTML, CSS, JavaScript
-- Contrainte : le site doit être responsive
-
-## Déroulé du projet
-
-### 1. Conception - 30 min
-
-- Faire la liste de toutes les mécaniques attendues pour la version basique
-- Réaliser un wireframe web et mobile pour décider à quoi va ressembler le jeu
-
-### 2. Développement - 1 jour
-
-- Mettre en place la logique et les mécaniques principales
-- Améliorer le design
-- Ajouter de nouvelles fonctionnalités au jeu
-
-### 3. Présentation - 15 min par groupe
-
-- Présentation du projet
-- Liste des mécaniques de base et de celles ajoutées le cas échéant
-- Organisation du groupe
-- Présentation du code métier développé
-- Démo
-- Conclusion
-
-## Modalités d'évaluation
-
-- Présentation et démo live
-
-## Livrables
-
-- Lien du dépôt GitHub
-- Liste des fonctionnalités attendues
-
-## Critères de performance
-
-- Le site est responsive
-- Utilisation de Git
-- Cohésion de groupe
-
-## Wiki
-
-### Scalaire
-
-[Voir le wiki Scalaire](https://github.com/glavingotech/fantastic-octo-lamp/wiki/Scalaire#scalaire)
-
-Maintenez en vie et soignez toutes ces espèces de poissons protégés.
-
-### Qu'est-ce qu'un poisson ?
-
-[Définition](https://github.com/glavingotech/fantastic-octo-lamp/wiki/Scalaire#quest-ce-quun-poisson)
-
-Un être vivant au besoin changeant, sensible à son environnement.
-
-### Points abordés
-
-[Détails](https://github.com/glavingotech/fantastic-octo-lamp/wiki/Scalaire#point-abord%C3%A9)
-
-- Interaction souris
-- Calcul
-- Random
-
-## Fonctionnalités attendues
-
-- Gestion des mouvements des poissons en horizontal
-- Gestion des collisions
-- Gestion des soins : nourrir, nettoyer
-- Affichage de la gestion des PV
+</div>
 
