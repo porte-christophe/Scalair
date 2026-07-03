@@ -14,7 +14,6 @@ Ce fichier sert de point d’entrée à la documentation du projet.
 - [Critères de performance](criteres-de-performance.md)
 - [Wiki](wiki.md)
 - [Fonctionnalités attendues](fonctionnalites-attendues.md)
-- [Structure du projet](structure-du-projet.md)
 
 <div align="center">
 

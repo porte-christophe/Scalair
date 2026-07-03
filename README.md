@@ -18,7 +18,6 @@ L’ensemble du brief est découpé en fichiers Markdown dédiés dans `assets/d
 - [Critères de performance](assets/doc-jeu-aquarium/criteres-de-performance.md)
 - [Wiki](assets/doc-jeu-aquarium/wiki.md)
 - [Fonctionnalités attendues](assets/doc-jeu-aquarium/fonctionnalites-attendues.md)
-- [Structure du projet](assets/doc-jeu-aquarium/structure-du-projet.md)
 
 ## Structure du projet
 
