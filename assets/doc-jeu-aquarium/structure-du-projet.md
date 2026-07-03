@@ -29,5 +29,9 @@ Scalair/
 - `assets/img/` : images utilisées par le projet
 - `assets/svg/` : icônes et éléments vectoriels
 
+<div align="center">
+
 [![Précédent](https://img.shields.io/badge/Pr%C3%A9c%C3%A9dent-6B7280?style=for-the-badge&logo=google-docs&logoColor=white)](fonctionnalites-attendues.md)
 [![Retour au README](https://img.shields.io/badge/Retour%20au%20README-374151?style=for-the-badge&logo=github&logoColor=white)](../../README.md)
+
+</div>

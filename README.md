@@ -51,5 +51,9 @@ Scalair/
 - `assets/img/` : images utilisées par le projet
 - `assets/svg/` : icônes et éléments vectoriels
 
+<div align="center">
+
 [![Commencer](https://img.shields.io/badge/Commencer-0F766E?style=for-the-badge&logo=readthedocs&logoColor=white)](assets/doc-jeu-aquarium/documentation.md)
+
+</div>
 
