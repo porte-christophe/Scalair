@@ -24,12 +24,14 @@ Scalair/
 	│   └── aquarium.jpg
 	└── svg/
 		└── scalair.svg
+├── script.js
+
 ```
 
 - `index.html` : page principale du mini-jeu
 - `assets/img/` : images utilisées par le projet
 - `assets/svg/` : icônes et éléments vectoriels
-
+- `script.js` : fichier contenant la logique JavaScript du jeu
 ---
 ## Contexte du projet
 
