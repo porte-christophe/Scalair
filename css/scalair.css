@@ -1,9 +1,25 @@
 body {
     background-image: url('../assets/img/aquarium.jpg');
 }
+
 header{
     display: flex;
     justify-content: center;
+}
+
+section#hud {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#hud-pv {
+    display: flex;
+    gap: 24px;
+    padding: 10px 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+    font-weight: 700;
 }
 
 section#jeu{
@@ -42,8 +58,9 @@ div#poisson2{
     background-size: contain;
     width: 120px;
     height: 120px;
+}
+
 footer{
     display: flex;
     justify-content: space-between;
-}
 }
