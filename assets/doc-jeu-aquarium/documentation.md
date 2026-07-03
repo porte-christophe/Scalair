@@ -16,5 +16,9 @@ Ce fichier sert de point d’entrée à la documentation du projet.
 - [Fonctionnalités attendues](fonctionnalites-attendues.md)
 - [Structure du projet](structure-du-projet.md)
 
+<div align="center">
+
 [![Retour au README](https://img.shields.io/badge/Retour%20au%20README-374151?style=for-the-badge&logo=github&logoColor=white)](../../README.md)
 [![Suivant](https://img.shields.io/badge/Suivant-2563EB?style=for-the-badge&logo=bookstack&logoColor=white)](contexte-du-projet.md)
+
+</div>
