@@ -1,21 +1,35 @@
 // ===============================
 // Récupération des éléments HTML
 // ===============================
-const aquarium = document.getElementById("aquarium"); // conteneur de l'aquarium
-const poisson1 = document.getElementById("poisson1"); // premier poisson
-const poisson2 = document.getElementById("poisson2"); // deuxième poisson
+const aquarium = document.getElementById("aquarium"); 
+const poisson1 = document.getElementById("poisson1"); 
+const poisson2 = document.getElementById("poisson2"); 
+
+// ===============================
+// Gestion des Points de Vie (PV)
+// ===============================
+let pvPoisson1 = 100;
+let pvPoisson2 = 100;
+
+// Fonction pour afficher les points de vie à l'écran
+function afficherPointsDeVie() {
+    poisson1.textContent = `Poisson 1 (${pvPoisson1} PV)`;
+    poisson2.textContent = `Poisson 2 (${pvPoisson2} PV)`;
+}
+
+// On appelle la fonction immédiatement pour afficher les PV au chargement
+afficherPointsDeVie();
 
 // ===============================
 // Collision entre les deux poissons
 // ===============================
 function collisionPoissons() {
-    const p1 = poisson1.getBoundingClientRect(); // boîte englobante du poisson1
-    const p2 = poisson2.getBoundingClientRect(); // boîte englobante du poisson2
+    const p1 = poisson1.getBoundingClientRect(); 
+    const p2 = poisson2.getBoundingClientRect(); 
 
-    // vrai si les projections horizontales se chevauchent (collision)
     return (
-        p1.left < p2.right && // gauche de p1 avant la droite de p2
-        p1.right > p2.left   // droite de p1 après la gauche de p2
+        p1.left < p2.right && 
+        p1.right > p2.left   
     );
 }
 
@@ -23,27 +37,24 @@ function collisionPoissons() {
 // Collision avec les bords de l'aquarium
 // ===============================
 function collisionAquarium(poisson) {
-    const p = poisson.getBoundingClientRect(); // boîte du poisson
-    const a = aquarium.getBoundingClientRect(); // boîte de l'aquarium
+    const p = poisson.getBoundingClientRect(); 
+    const a = aquarium.getBoundingClientRect(); 
 
-    // vrai si le poisson touche ou dépasse les bords gauche ou droite
     return (
-        p.left <= a.left || // touche le bord gauche
-        p.right >= a.right  // touche le bord droit
+        p.left <= a.left || 
+        p.right >= a.right  
     );
 }
 
 // ===============================
-// Vérification des collisions
+// Exemple d'application des dégâts lors d'une vérification
 // ===============================
 if (collisionPoissons()) {
-    console.log("Collision entre les poissons"); // log si collision entre poissons
-}
-
-if (collisionAquarium(poisson1)) {
-    console.log("Le poisson 1 touche le bord de l'aquarium"); // log si p1 touche le bord
-}
-
-if (collisionAquarium(poisson2)) {
-    console.log("Le poisson 2 touche le bord de l'aquarium"); // log si p2 touche le bord
+    console.log("Collision entre les poissons");
+    // Exemple : perdre 10 PV en cas de collision
+    pvPoisson1 -= 10;
+    pvPoisson2 -= 10;
+    
+    // On met à jour l'affichage après le changement de PV
+    afficherPointsDeVie();
 }
