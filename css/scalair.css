@@ -44,7 +44,7 @@ div#aquarium{
 div#poisson1{
     position: relative;
     left: 0%;
-    top: 20%;
+    top: 30%;
     background-image: url('../assets/img/scalairDroit.png');
     background-size: contain;
     width: 120px;
@@ -53,7 +53,7 @@ div#poisson1{
 div#poisson2{
     position: relative;
     left: 90%;
-    top: 40%;
+    top: 20%;
     background-image: url('../assets/img/scalairGauche.png');
     background-size: contain;
     width: 120px;
@@ -61,5 +61,10 @@ div#poisson2{
 }
 footer{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+section#actions{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
 }

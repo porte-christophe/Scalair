@@ -11,8 +11,8 @@ const actions = document.querySelectorAll('#actions')
 // =============================================
 // initialisation des mouvement et des boutons
 // =============================================
-let valCadreDroite = 0;
-let valCadreGauche = 90;
+let initPosScalair1 = 0;
+let initPosScalair2 = 90;
 
 initialisation();
 
@@ -21,38 +21,43 @@ function initialisation(){
 	setInterval(moveDroite, 200);
 	setInterval(moveGauche, 100);
 	listenClick();
+	setInterval(verifierCollisions, 100);
+	setInterval(afficherPointsDeVie,50);
 };
 function moveDroite() {
-	if (valCadreDroite<90) {
-		valCadreDroite += 1;
-		let newLeft = valCadreDroite +"%";
+	if (initPosScalair1<90) {
+		initPosScalair1 += 1;
+		let newLeft = initPosScalair1 +"%";
 		poisson1.style.left = newLeft;
-	}else if (valCadreDroite == 90) {
+	}else if (initPosScalair1 == 90) {
 		poisson1.style.left = 0+"%";
-		valCadreDroite = 0;
+		initPosScalair1 = 0;
 	}
 };
 function moveGauche() {
-	if (valCadreGauche>0) {
-		valCadreGauche -= 1;
-		let newLeft = valCadreGauche +"%";
+	if (initPosScalair2>0) {
+		initPosScalair2 -= 1;
+		let newLeft = initPosScalair2 +"%";
 		poisson2.style.left = newLeft;
-	}else if (valCadreGauche == 0) {
+	}else if (initPosScalair2 == 0) {
 		poisson2.style.left = 90+"%";
-		valCadreGauche = 90;
+		initPosScalair2 = 90;
 	}
 };
 function listenClick() {
     const buttons = document.querySelectorAll('button');
-    //console.log("aze", buttons);
     if (buttons[0]) {
         buttons[0].addEventListener('click', function () {
+        	pvPoisson1 = 100;
+			pvPoisson2 = 100;
             alert("Vous avez soigner tout l'aquarium");
         });
     }
 
     if (buttons[1]) {
         buttons[1].addEventListener('click', function () {
+        	pvPoisson1 = 100;
+			pvPoisson2 = 100;
             alert("Vous avez nourrit tous les poissons");
         });
 
@@ -85,7 +90,7 @@ function afficherPointsDeVie() {
 function retirerPointsDeVie(montant) {
     pvPoisson1 = Math.max(0, pvPoisson1 - montant);
     pvPoisson2 = Math.max(0, pvPoisson2 - montant);
-    afficherPointsDeVie();
+    //afficherPointsDeVie();
 }
 
 
@@ -121,15 +126,11 @@ let collisionEnCours = false;
 
 function verifierCollisions() {
     const collisionActuelle = collisionPoissons();
-
     if (collisionActuelle && !collisionEnCours) {
-        console.log("Collision entre les poissons");
+        //console.log("Collision entre les poissons");
         retirerPointsDeVie(10);
     }
 
     collisionEnCours = collisionActuelle;
 }
 
-afficherPointsDeVie();
-verifierCollisions();
-setInterval(verifierCollisions, 100);
