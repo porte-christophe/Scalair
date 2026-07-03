@@ -22,7 +22,26 @@ div#aquarium{
     border-width: 0px 10px 10px 10px;
     border-color: rgba(104, 104, 104, 1.0);
     border-radius: 0px 0px 25px 25px;
+    display: flex;
+    flex-direction: column;
 }
+div#poisson1{
+    position: relative;
+    left: 0%;
+    top: 20%;
+    background-image: url('../assets/svg/scalair.svg');
+    background-size: contain;
+    width: 120px;
+    height: 120px;
+}
+div#poisson2{
+    position: relative;
+    left: 90%;
+    top: 40%;
+    background-image: url('../assets/svg/scalair.svg');
+    background-size: contain;
+    width: 120px;
+    height: 120px;
 footer{
     display: flex;
     justify-content: space-between;
