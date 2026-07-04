@@ -5,6 +5,8 @@ const aquarium = document.getElementById("aquarium");
 const poisson1 = document.getElementById("poisson1");
 const poisson2 = document.getElementById("poisson2");
 const hudPV = document.getElementById("hud-pv");
+const bulle1 = document.getElementById("bulle1");
+const bulle2 = document.getElementById("bulle2");
 
 
 // =============================================
@@ -17,13 +19,17 @@ initialisation();
 
 
 function initialisation(){
-	setInterval(moveDroite, 150);
-	setInterval(moveGauche, 150);
+	setInterval(deplacerPoissons, 100);
 	listenClick();
 	setInterval(verifierCollisions, 100);
 	setInterval(afficherPointsDeVie,50);
 };
+function deplacerPoissons() {
+	moveDroite();
+	moveGauche();
+};
 function moveDroite() {
+	if (poisson1Mort) return;
 	if (initPosScalair1<90) {
 		initPosScalair1 += 1;
 		let newLeft = initPosScalair1 +"%";
@@ -34,6 +40,7 @@ function moveDroite() {
 	}
 };
 function moveGauche() {
+	if (poisson2Mort) return;
 	if (initPosScalair2>0) {
 		initPosScalair2 -= 1;
 		let newLeft = initPosScalair2 +"%";
@@ -47,22 +54,24 @@ function listenClick() {
     const buttons = document.querySelectorAll('button');
     if (buttons[0]) {
         buttons[0].addEventListener('click', function () {
-        	pvPoisson1 = 100;
-			pvPoisson2 = 100;
+        	if (!poisson1Mort) pvPoisson1 = 100;
+			if (!poisson2Mort) pvPoisson2 = 100;
             alert("Vous avez soigner tout l'aquarium");
         });
     }
 
     if (buttons[1]) {
         buttons[1].addEventListener('click', function () {
-        	pvPoisson1 = 100;
-			pvPoisson2 = 100;
+        	if (!poisson1Mort) pvPoisson1 = 100;
+			if (!poisson2Mort) pvPoisson2 = 100;
             alert("Vous avez nourrit tous les poissons");
         });
 
     }
 	if (buttons[2]) {
         buttons[2].addEventListener('click', function () {
+            if (poisson1Mort) ressusciter(1);
+            if (poisson2Mort) ressusciter(2);
             alert("Vous avez nettoyé l'aquarium");
         });
     }
@@ -72,6 +81,8 @@ function listenClick() {
 // ===============================
 let pvPoisson1 = 100;
 let pvPoisson2 = 100;
+let poisson1Mort = false;
+let poisson2Mort = false;
 
 hudPV.innerHTML = `
   <p id="pv-poisson1">Poisson 1 : ${pvPoisson1} PV</p>
@@ -89,25 +100,31 @@ function afficherPointsDeVie() {
 function retirerPointsDeVie(montant) {
     pvPoisson1 = Math.max(0, pvPoisson1 - montant);
     pvPoisson2 = Math.max(0, pvPoisson2 - montant);
-    verifierReinitialisation();
+    verifierMort(1);
+    setTimeout(() => verifierMort(2), 1000);
 }
 
-function retirerPointsDeVieUnique(numeroPoisson, montant) {
+function verifierMort(numeroPoisson) {
+    if (numeroPoisson === 1 && pvPoisson1 <= 0 && !poisson1Mort) {
+        poisson1Mort = true;
+        poisson1.classList.add("mort");
+    } else if (numeroPoisson === 2 && pvPoisson2 <= 0 && !poisson2Mort) {
+        poisson2Mort = true;
+        poisson2.classList.add("mort");
+    }
+}
+
+function ressusciter(numeroPoisson) {
     if (numeroPoisson === 1) {
-        pvPoisson1 = Math.max(0, pvPoisson1 - montant);
-    } else {
-        pvPoisson2 = Math.max(0, pvPoisson2 - montant);
-    }
-    verifierReinitialisation();
-}
-
-function verifierReinitialisation() {
-    if (pvPoisson1 <= 0 || pvPoisson2 <= 0) {
         pvPoisson1 = 100;
+        poisson1Mort = false;
+        poisson1.classList.remove("mort");
+    } else {
         pvPoisson2 = 100;
+        poisson2Mort = false;
+        poisson2.classList.remove("mort");
     }
 }
-
 
 
 // ===============================
@@ -125,44 +142,38 @@ function collisionPoissons() {
     );
 }
 
-// ===============================
-// Collision avec les bords de l'aquarium
-// ===============================
-function collisionAquarium(poisson) {
-    const p = poisson.getBoundingClientRect();
-    const a = aquarium.getBoundingClientRect();
-    // Marge nécessaire car la bordure de 10px de l'aquarium empêche
-    // le poisson de toucher exactement a.left/a.right.
-    const marge = 15;
+let collisionEnCours = false;
+let bulleTimeoutId = null;
 
-    return (
-        p.left <= a.left + marge ||
-        p.right >= a.right - marge
-    );
+function afficherBulles() {
+    bulle1.classList.add("visible");
+    bulle2.classList.add("visible");
+    if (bulleTimeoutId) {
+        clearTimeout(bulleTimeoutId);
+    }
+    bulleTimeoutId = setTimeout(() => {
+        bulle1.classList.remove("visible");
+        bulle2.classList.remove("visible");
+    }, 1500);
 }
 
-let collisionEnCours = false;
-let collisionMur1EnCours = false;
-let collisionMur2EnCours = false;
+function declencherSecousse(poisson) {
+    poisson.classList.remove("secousse");
+    void poisson.offsetWidth;
+    poisson.classList.add("secousse");
+    poisson.addEventListener("animationend", () => {
+        poisson.classList.remove("secousse");
+    }, { once: true });
+}
 
 function verifierCollisions() {
     const collisionActuelle = collisionPoissons();
-    if (collisionActuelle && !collisionEnCours) {
-        //console.log("Collision entre les poissons");
+    if (collisionActuelle && !collisionEnCours && !poisson1Mort && !poisson2Mort) {
         retirerPointsDeVie(10);
+        afficherBulles();
+        declencherSecousse(poisson1);
+        declencherSecousse(poisson2);
     }
     collisionEnCours = collisionActuelle;
-
-    const mur1Actuelle = collisionAquarium(poisson1);
-    if (mur1Actuelle && !collisionMur1EnCours) {
-        retirerPointsDeVieUnique(1, 5);
-    }
-    collisionMur1EnCours = mur1Actuelle;
-
-    const mur2Actuelle = collisionAquarium(poisson2);
-    if (mur2Actuelle && !collisionMur2EnCours) {
-        retirerPointsDeVieUnique(2, 5);
-    }
-    collisionMur2EnCours = mur2Actuelle;
 }
 

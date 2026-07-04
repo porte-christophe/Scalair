@@ -5,17 +5,30 @@ body {
 header{
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    background: linear-gradient(180deg, #0d3d5c, #2ba7f4);
+}
+header h1 {
+    margin: 0;
+    color: #ffffff;
 }
 
 section#hud {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-top: 32px;
+    margin-bottom: 30px;
 }
 
 #hud-pv {
     display: flex;
-    gap: 24px;
+    justify-content: space-between;
+    width: 80%;
+}
+
+#pv-poisson1,
+#pv-poisson2 {
     padding: 10px 16px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 999px;
@@ -24,15 +37,17 @@ section#hud {
 
 section#jeu{
     width: 100%;
-    height: 500px;
+    height: 300px;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
+
 
 div#aquarium{
     width: 80%;
     height: inherit;
+    overflow: hidden;
     background-color: rgba(43, 167, 244, 0.9);
     border-style: solid;
     border-width: 0px 10px 10px 10px;
@@ -41,6 +56,7 @@ div#aquarium{
     display: flex;
     flex-direction: column;
 }
+
 div#poisson1{
     position: relative;
     left: 0%;
@@ -59,6 +75,70 @@ div#poisson2{
     width: 120px;
     height: 120px;
 }
+
+.bulle-dialogue {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    background-color: white;
+    color: #222;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+.bulle-dialogue::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+.bulle-dialogue.visible {
+    opacity: 1;
+    visibility: visible;
+}
+@keyframes secousse {
+    0%, 100% { transform: translateX(0); }
+    10% { transform: translateX(-8px); }
+    20% { transform: translateX(8px); }
+    30% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    50% { transform: translateX(-6px); }
+    60% { transform: translateX(6px); }
+    70% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+    90% { transform: translateX(-2px); }
+}
+.secousse {
+    animation: secousse 1.5s ease-in-out;
+}
+.mort {
+    transform: rotate(180deg);
+}
+.icone-mort {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    display: none;
+}
+.mort .icone-mort {
+    display: block;
+}
+
 footer{
     display: flex;
     justify-content: center;
@@ -67,4 +147,76 @@ section#actions{
     width: 80%;
     display: flex;
     justify-content: space-around;
+}
+section#actions button {
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+section#actions button:hover {
+    background-color: #dfefff;
+    transform: translateY(-2px);
+}
+.icone-bouton {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+@media (max-width: 900px) {
+    div#poisson1,
+    div#poisson2 {
+        width: 90px;
+        height: 90px;
+    }
+    section#jeu {
+        height: 350px;
+    }
+    #pv-poisson1,
+    #pv-poisson2 {
+        padding: 10px 18px;
+    }
+    section#actions {
+        width: 90%;
+        gap: 10px;
+    }
+    section#actions button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    div#poisson1,
+    div#poisson2 {
+        width: 65px;
+        height: 65px;
+    }
+    section#jeu {
+        height: 350px;
+    }
+    #pv-poisson1,
+    #pv-poisson2 {
+        padding: 8px 14px;
+    }
+    section#actions {
+        width: 96%;
+        gap: 8px;
+    }
+    section#actions button {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    .icone-bouton {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+    }
+    .icone-mort {
+        width: 20px;
+        height: 20px;
+    }
 }
