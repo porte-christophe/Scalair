@@ -5,7 +5,6 @@ const aquarium = document.getElementById("aquarium");
 const poisson1 = document.getElementById("poisson1");
 const poisson2 = document.getElementById("poisson2");
 const hudPV = document.getElementById("hud-pv");
-const actions = document.querySelectorAll('#actions')
 
 
 // =============================================
@@ -18,8 +17,8 @@ initialisation();
 
 
 function initialisation(){
-	setInterval(moveDroite, 200);
-	setInterval(moveGauche, 100);
+	setInterval(moveDroite, 150);
+	setInterval(moveGauche, 150);
 	listenClick();
 	setInterval(verifierCollisions, 100);
 	setInterval(afficherPointsDeVie,50);
@@ -91,7 +90,6 @@ function retirerPointsDeVie(montant) {
     pvPoisson1 = Math.max(0, pvPoisson1 - montant);
     pvPoisson2 = Math.max(0, pvPoisson2 - montant);
     verifierReinitialisation();
-    //afficherPointsDeVie();
 }
 
 function retirerPointsDeVieUnique(numeroPoisson, montant) {
