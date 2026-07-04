@@ -90,8 +90,26 @@ function afficherPointsDeVie() {
 function retirerPointsDeVie(montant) {
     pvPoisson1 = Math.max(0, pvPoisson1 - montant);
     pvPoisson2 = Math.max(0, pvPoisson2 - montant);
+    verifierReinitialisation();
     //afficherPointsDeVie();
 }
+
+function retirerPointsDeVieUnique(numeroPoisson, montant) {
+    if (numeroPoisson === 1) {
+        pvPoisson1 = Math.max(0, pvPoisson1 - montant);
+    } else {
+        pvPoisson2 = Math.max(0, pvPoisson2 - montant);
+    }
+    verifierReinitialisation();
+}
+
+function verifierReinitialisation() {
+    if (pvPoisson1 <= 0 || pvPoisson2 <= 0) {
+        pvPoisson1 = 100;
+        pvPoisson2 = 100;
+    }
+}
+
 
 
 // ===============================
@@ -115,14 +133,19 @@ function collisionPoissons() {
 function collisionAquarium(poisson) {
     const p = poisson.getBoundingClientRect();
     const a = aquarium.getBoundingClientRect();
+    // Marge nécessaire car la bordure de 10px de l'aquarium empêche
+    // le poisson de toucher exactement a.left/a.right.
+    const marge = 15;
 
     return (
-        p.left <= a.left ||
-        p.right >= a.right
+        p.left <= a.left + marge ||
+        p.right >= a.right - marge
     );
 }
 
 let collisionEnCours = false;
+let collisionMur1EnCours = false;
+let collisionMur2EnCours = false;
 
 function verifierCollisions() {
     const collisionActuelle = collisionPoissons();
@@ -130,7 +153,18 @@ function verifierCollisions() {
         //console.log("Collision entre les poissons");
         retirerPointsDeVie(10);
     }
-
     collisionEnCours = collisionActuelle;
+
+    const mur1Actuelle = collisionAquarium(poisson1);
+    if (mur1Actuelle && !collisionMur1EnCours) {
+        retirerPointsDeVieUnique(1, 5);
+    }
+    collisionMur1EnCours = mur1Actuelle;
+
+    const mur2Actuelle = collisionAquarium(poisson2);
+    if (mur2Actuelle && !collisionMur2EnCours) {
+        retirerPointsDeVieUnique(2, 5);
+    }
+    collisionMur2EnCours = mur2Actuelle;
 }
 
