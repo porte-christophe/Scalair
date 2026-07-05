@@ -56,7 +56,10 @@ function listenClick() {
         buttons[0].addEventListener('click', function () {
         	if (!poisson1Mort) pvPoisson1 = 100;
 			if (!poisson2Mort) pvPoisson2 = 100;
-            alert("Vous avez soigner tout l'aquarium");
+            
+            let p = document.querySelector('p');
+            p.classList.remove("hidden");
+            p.textContent = "Vous soignez tout l'aquarium!"
         });
     }
 
@@ -65,6 +68,9 @@ function listenClick() {
         	if (!poisson1Mort) pvPoisson1 = 100;
 			if (!poisson2Mort) pvPoisson2 = 100;
             alert("Vous avez nourrit tous les poissons");
+            let p = document.querySelector('p');
+            p.classList.remove("hidden");
+            p.textContent = "J'ai appuyé sur entrée!"
         });
 
     }
@@ -73,6 +79,9 @@ function listenClick() {
             if (poisson1Mort) ressusciter(1);
             if (poisson2Mort) ressusciter(2);
             alert("Vous avez nettoyé l'aquarium");
+            let p = document.querySelector('p');
+            p.classList.remove("hidden");
+            p.textContent = "J'ai appuyé sur entrée!"
         });
     }
 }
@@ -86,7 +95,9 @@ let poisson2Mort = false;
 
 hudPV.innerHTML = `
   <p id="pv-poisson1">Poisson 1 : ${pvPoisson1} PV</p>
-  <p id="pv-poisson2">Poisson 2 : ${pvPoisson2} PV</p>
+  <p class="hidden">
+  </p>
+ <p id="pv-poisson2">Poisson 2 : ${pvPoisson2} PV</p>
 `;
 
 const pvPoisson1Element = document.getElementById("pv-poisson1");
