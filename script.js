@@ -85,16 +85,16 @@ let poisson1Mort = false;
 let poisson2Mort = false;
 
 hudPV.innerHTML = `
-  <p id="pv-poisson1">Poisson 1 : ${pvPoisson1} PV</p>
-  <p id="pv-poisson2">Poisson 2 : ${pvPoisson2} PV</p>
+  <p id="pv-poisson1">Nemo : ${pvPoisson1} PV</p>
+  <p id="pv-poisson2">Dory : ${pvPoisson2} PV</p>
 `;
 
 const pvPoisson1Element = document.getElementById("pv-poisson1");
 const pvPoisson2Element = document.getElementById("pv-poisson2");
 
 function afficherPointsDeVie() {
-    pvPoisson1Element.textContent = `Poisson 1 : ${pvPoisson1} PV`;
-    pvPoisson2Element.textContent = `Poisson 2 : ${pvPoisson2} PV`;
+    pvPoisson1Element.textContent = `Nemo : ${pvPoisson1} PV`;
+    pvPoisson2Element.textContent = `Dory : ${pvPoisson2} PV`;
 }
 
 function retirerPointsDeVie(montant) {
