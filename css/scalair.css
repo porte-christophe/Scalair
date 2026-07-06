@@ -171,7 +171,7 @@ section#actions button:hover {
     vertical-align: middle;
     margin-right: 6px;
 }
-
+/*---------------------------------------------------*/
 @media (max-width: 900px) {
     div#poisson1,
     div#poisson2 {
@@ -194,7 +194,7 @@ section#actions button:hover {
         padding: 10px 20px;
     }
 }
-
+/*---------------------------------------------------*/
 @media (max-width: 600px) {
     div#poisson1,
     div#poisson2 {

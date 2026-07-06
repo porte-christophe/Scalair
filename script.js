@@ -31,21 +31,21 @@ function deplacerPoissons() {
 function moveDroite() {
 	if (poisson1Mort) return;
 	if (initPosScalair1<90) {
-		initPosScalair1 += 1;
+		initPosScalair1 += Math.floor(Math.random() * 3);
 		let newLeft = initPosScalair1 +"%";
 		poisson1.style.left = newLeft;
-	}else if (initPosScalair1 == 90) {
+	}else if (initPosScalair1 >= 90) {
 		poisson1.style.left = 0+"%";
 		initPosScalair1 = 0;
-	}
+    }
 };
 function moveGauche() {
 	if (poisson2Mort) return;
 	if (initPosScalair2>0) {
-		initPosScalair2 -= 1;
+		initPosScalair2 -= Math.floor(Math.random() * 3);
 		let newLeft = initPosScalair2 +"%";
 		poisson2.style.left = newLeft;
-	}else if (initPosScalair2 == 0) {
+	}else if (initPosScalair2 <= 0) {
 		poisson2.style.left = 90+"%";
 		initPosScalair2 = 90;
 	}
@@ -57,9 +57,9 @@ function listenClick() {
         	if (!poisson1Mort) pvPoisson1 = 100;
 			if (!poisson2Mort) pvPoisson2 = 100;
             alert("Vous avez soignez tous les poissons");
-            let p = document.querySelector('p');
-            p.classList.remove("hidden");
-            p.textContent = "Vous soignez tout l'aquarium!"
+            let h1 = document.querySelector('h1');
+            h1.classList.remove("hidden");
+            h1.textContent = "Vous soignez tout l'aquarium!"
         });
     }
 
@@ -68,9 +68,9 @@ function listenClick() {
         	if (!poisson1Mort) pvPoisson1 = 100;
 			if (!poisson2Mort) pvPoisson2 = 100;
             alert("Vous avez nourrit tous les poissons");
-            let p = document.querySelector('p');
-            p.classList.remove("hidden");
-            p.textContent = "J'ai appuyé sur entrée!"
+            let h1 = document.querySelector('h1');
+            h1.classList.remove("hidden");
+            h1.textContent = "J'ai appuyé sur entrée!"
         });
 
     }
@@ -79,9 +79,9 @@ function listenClick() {
             if (poisson1Mort) ressusciter(1);
             if (poisson2Mort) ressusciter(2);
             alert("Vous avez nettoyé l'aquarium");
-            let p = document.querySelector('p');
-            p.classList.remove("hidden");
-            p.textContent = "J'ai appuyé sur entrée!"
+            let h1 = document.querySelector('h1');
+            h1.classList.remove("hidden");
+            h1.textContent = "J'ai appuyé sur entrée!"
         });
     }
 }
@@ -107,9 +107,9 @@ function afficherPointsDeVie() {
     pvPoisson2Element.textContent = `Poisson 2 : ${pvPoisson2} PV`;
 }
 
-function retirerPointsDeVie(montant) {
-    pvPoisson1 = Math.max(0, pvPoisson1 - montant);
-    pvPoisson2 = Math.max(0, pvPoisson2 - montant);
+function retirerPointsDeVie() {
+    pvPoisson1 = Math.max(0, pvPoisson1 - Math.floor(Math.random() * 11));
+    pvPoisson2 = Math.max(0, pvPoisson2 - Math.floor(Math.random() * 11));
     verifierMort(1);
     setTimeout(() => verifierMort(2), 1000);
 }
@@ -179,7 +179,7 @@ function declencherSecousse(poisson) {
 function verifierCollisions() {
     const collisionActuelle = collisionPoissons();
     if (collisionActuelle && !collisionEnCours && !poisson1Mort && !poisson2Mort) {
-        retirerPointsDeVie(10);
+        retirerPointsDeVie();
         afficherBulles();
         declencherSecousse(poisson1);
         declencherSecousse(poisson2);
